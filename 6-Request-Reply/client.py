@@ -20,10 +20,14 @@ channel.queue_declare(queue='request-queue')
 cor_id = str(uuid.uuid4())
 print(f"Sending Request: {cor_id}")
 
-channel.basic_publish('', routing_key='request-queue', properties=pika.BasicProperties(
-    reply_to=reply_queue.method.queue,
-    correlation_id=cor_id
-), body='Can I request a reply?')
+channel.basic_publish(
+    exchange ='', 
+    routing_key='request-queue', 
+    properties=pika.BasicProperties(
+        reply_to=reply_queue.method.queue,
+        correlation_id=cor_id
+    ),
+    body='Can I request a reply?')
 
 print("Starting Client")
 

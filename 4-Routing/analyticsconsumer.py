@@ -12,7 +12,7 @@ channel = connection.channel()
 
 channel.exchange_declare(exchange='routing', exchange_type=ExchangeType.direct)
 
-queue = channel.queue_declare(queue='', exclusive=True)
+queue = channel.queue_declare(queue='', exclusive=True) #on connection close, delete queue
 
 channel.queue_bind(exchange='routing', queue=queue.method.queue, routing_key='analyticsonly')
 channel.queue_bind(exchange='routing', queue=queue.method.queue, routing_key='both')
