@@ -27,6 +27,8 @@ channel.queue_declare(
     queue='mainexchangequeue', 
     arguments={'x-dead-letter-exchange': 'dlx',  'x-message-ttl' : 1000})
 channel.queue_bind('mainexchangequeue', 'mainexchange', 'test')
+channel.basic_consume(queue='mainexchangequeue', on_message_callback=main_queue_on_message_received)
+
 
 channel.queue_declare('deadletterqueue')
 channel.queue_bind('deadletterqueue', 'dlx')

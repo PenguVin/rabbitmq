@@ -13,7 +13,7 @@ channel.exchange_declare(exchange='mainexchange', exchange_type=ExchangeType.dir
 
 message = 'Hello this is my first message'
 
-channel.basic_publish(exchange='mainexchange', routing_key='test', body=message)
+channel.basic_publish(exchange='mainexchange', routing_key='simple', body=message)
 
 print(f'sent message: {message}')
 
